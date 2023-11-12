@@ -1,0 +1,78 @@
+/* styles.css */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+
+header {
+  background: #50b3a2;
+  color: white;
+  padding-top: 30px;
+  min-height: 70px;
+  border-bottom: #e8491d 3px solid;
+}
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+}
+.container {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+header {
+  background: #50b3a2;
+  color: white;
+  padding-top: 30px;
+  min-height: 70px;
+  border-bottom: #e8491d 3px solid;
+}
+header a {
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+header ul {
+  padding: 0;
+  list-style: none;
+  display: flex; /* Display the navigation items in a row */
+  justify-content: center; /* Center-align the navigation items */
+}
+header li {
+  padding: 0 20px 0 20px;
+}
+header #branding {
+  flex: 1; /* Take up remaining space in the header */
+}
+header #branding h1 {
+  margin: 0;
+}
+header nav {
+  float: right;
+  margin-top: 10px;
+}
+header .highlight,
+header .current a {
+  color: #e8491d;
+  font-weight: bold;
+}
+header a:hover {
+  color: #ffffff;
+  font-weight: bold;
+}
+#calendar {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  background-color: #ffffff;
+}
+/* Add the rest of your CSS styles here */
