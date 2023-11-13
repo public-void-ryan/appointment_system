@@ -37,34 +37,55 @@ $conn->close();
 <html lang="en">
 
 <head>
-    <!-- ... Your HTML head content ... -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Created</title>
+    <link href="styles.css" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container">
-        <section id="main">
-            <h1>Create an Appointment</h1>
-            <form method="post" action="">
-                <div class="form-group">
-                    <label for="user_id">User ID:</label>
-                    <input type="text" id="user_id" name="user_id" required />
-                </div>
-                <div class="form-group">
-                    <label for="service_id">Service ID:</label>
-                    <input type="text" id="service_id" name="service_id" required />
-                </div>
-                <div class="form-group">
-                    <label for="appointment_time">Appointment Time:</label>
-                    <input type="datetime-local" id="appointment_time" name="appointment_time" required />
-                </div>
-                <div class="form-group">
-                    <label for="notes">Notes:</label>
-                    <textarea id="notes" name="notes" rows="4" required></textarea>
-                </div>
-                <button type="submit">Create Appointment</button>
-            </form>
-        </section>
-    </div>
-</body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>Online Appointment System</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.php">Register</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    </head>
+
+    <body>
+        <div class="container">
+            <section id="main">
+                <h1>Create an Appointment</h1>
+                <form method="post" action="">
+                    <div class="form-group">
+                        <label for="user_id">User ID:</label>
+                        <input type="text" id="user_id" name="user_id" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="service_id">Service ID:</label>
+                        <input type="text" id="service_id" name="service_id" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="appointment_time">Appointment Time:</label>
+                        <input type="datetime-local" id="appointment_time" name="appointment_time" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Notes:</label>
+                        <textarea id="notes" name="notes" rows="4" required></textarea>
+                    </div>
+                    <button type="submit">Create Appointment</button>
+                </form>
+            </section>
+        </div>
+    </body>
 
 </html>
