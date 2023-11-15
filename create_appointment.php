@@ -53,7 +53,7 @@ $conn->close();
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="services.html">Services</a></li>
-                    <li><a href="login.html">Login</a></li>
+                    <li><a href="login.php">Login</a></li>
                     <li><a href="register.php">Register</a></li>
                 </ul>
             </nav>
@@ -66,14 +66,6 @@ $conn->close();
             <section id="main">
                 <h1>Create an Appointment</h1>
                 <form method="post" action="">
-                    <div class="form-group">
-                        <label for="user_id">User ID:</label>
-                        <input type="text" id="user_id" name="user_id" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="service_id">Service ID:</label>
-                        <input type="text" id="service_id" name="service_id" required />
-                    </div>
                     <div class="form-group">
                         <label for="appointment_time">Appointment Time:</label>
                         <input type="datetime-local" id="appointment_time" name="appointment_time" required />

@@ -75,3 +75,7 @@ header a:hover {
   width: 100%;
   background-color: #ffffff;
 }
+.error-message {
+  color: red;
+  font-weight: bold;
+}

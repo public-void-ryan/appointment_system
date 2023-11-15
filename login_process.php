@@ -1,26 +1,42 @@
 <?php
+// Include the database connection file (db.php)
+require_once("db.php");
+
 // Check if the form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve user input from the form
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    // Replace these with your actual username and password validation logic
-    $validUsername = "your_username";
-    $validPassword = "your_password";
+    // Perform additional server-side validation here
+    // For example, query the database to validate the username and password
+    $sql = "SELECT username, password FROM users WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    // Check if the entered username and password match the valid ones
-    if ($username === $validUsername && $password === $validPassword) {
-        // Redirect to a successful login page or perform other actions
-        header("Location: success.html");
-        exit();
-    } else {
-        // Redirect back to the login page with an error message
-        header("Location: login.html?error=1");
-        exit();
+    if ($result->num_rows === 1) {
+        // User found in the database, fetch the hashed password
+        $row = $result->fetch_assoc();
+        $hashedPassword = $row["password"];
+
+        // Verify the entered password against the hashed password
+        if (password_verify($password, $hashedPassword)) {
+            // Passwords match, user is authenticated, you can proceed with login
+            header("Location: login_success.html");
+            exit();
+        }
     }
+
+    // If validation fails, redirect back to the login page with an error message
+    header("Location: login.php?error=1");
+    exit();
 } else {
     // If the form was not submitted, redirect to the login page
-    header("Location: login.html");
+    header("Location: login.php");
     exit();
 }
+
+$stmt->close();
+$conn->close();
