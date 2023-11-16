@@ -1,7 +1,7 @@
 <?php
 $db_host = "localhost"; // AMPPS default database host
-$db_user = "root"; // Your MySQL username
-$db_password = "scsu"; // Your MySQL password
+$db_user = "scsu"; // Your MySQL username
+$db_password = "huskies"; // Your MySQL password
 $db_name = "appointment_app"; // The name of the database you created
 
 // Create a connection to the database
