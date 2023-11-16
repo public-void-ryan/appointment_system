@@ -16,9 +16,10 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
+                 <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
                     <li><a href="login.php">Login</a></li>
+                    <li><a href="register.php">Register</a></li>
                 </ul>
             </nav>
         </div>
