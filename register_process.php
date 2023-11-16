@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 
     // Redirect to a success page or perform other actions
-    header("Location: registration_success.html");
+    header("Location: registration_success.php");
     exit();
 } else {
     // If the form was not submitted, redirect to the registration page

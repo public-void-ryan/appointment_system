@@ -50,13 +50,24 @@ $conn->close();
                 <h1>Online Appointment System</h1>
             </div>
             <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="login.php">Login</a></li>
-                    <li><a href="register.php">Register</a></li>
-                </ul>
-            </nav>
+        <ul>
+          <li class="current"><a href="index.php">Home</a></li>
+          <li><a href="services.php">Services</a></li>
+          <?php
+          // Check if the user is logged in
+          session_start();
+          if (isset($_SESSION["user_id"])) {
+            // User is logged in, display "My Appointments" and "Logout"
+            echo '<li><a href="my-appointments.php">My Appointments</a></li>';
+            echo '<li><a href="logout.php">Logout</a></li>';
+          } else {
+            // User is not logged in, display "Login" and "Register"
+            echo '<li><a href="login.php">Login</a></li>';
+            echo '<li><a href="register.php">Register</a></li>';
+          }
+          ?>
+        </ul>
+      </nav>
         </div>
     </header>
     </head>

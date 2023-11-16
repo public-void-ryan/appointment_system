@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login</title>
+  <title>Registration Successful</title>
   <link href="styles.css" rel="stylesheet" />
 </head>
 
@@ -37,26 +37,11 @@
   </header>
 
   <div class="container">
-    <h1>Login</h1>
-
-    <?php
-    // Check if an error parameter is present in the URL
-    if (isset($_GET["error"]) && $_GET["error"] == 1) {
-      echo '<p class="error-message">Login failed. Please check your username and password and try again.</p>';
-    }
-    ?>
-
-    <form action="login_process.php" method="post">
-      <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required />
-      </div>
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required />
-      </div>
-      <button type="submit">Login</button>
-    </form>
+    <h1>Registration Successful</h1>
+    <p>
+      Your registration was successful. You can now
+      <a href="login.php">log in</a> to your account.
+    </p>
   </div>
 </body>
 

@@ -79,3 +79,50 @@ header a:hover {
   color: red;
   font-weight: bold;
 }
+.form-group {
+  text-align: center; /* Centers the content of the form-group */
+  margin-bottom: 2px; /* Adjust the vertical spacing between each form group */
+}
+
+.form-group label,
+.form-group input {
+  display: block; /* Makes label and input into block-level elements */
+  margin-left: auto; /* Auto margins for center alignment */
+  margin-right: auto;
+  text-align: left; /* Aligns the text of labels and inputs to the left */
+}
+
+.form-group label {
+  width: 200px; /* Adjust the width as necessary */
+  margin-bottom: 5px; /* Space between the label and the input field */
+}
+
+.form-group input {
+  width: 200px; /* Adjust the width as necessary */
+  /* Other styles (e.g., padding, border) as needed */
+}
+
+/* Center the entire form within its parent container */
+form {
+  max-width: 300px; /* Or whatever maximum width you prefer */
+  margin: auto; /* This centers the form in the container */
+}
+
+/* If you're still using <br> tags after your input fields, remove them to prevent line breaks. */
+
+/* Center the h1 element */
+h1 {
+  text-align: center;
+}
+
+/* Center the button */
+button {
+  display: block; /* Changes the button to a block-level element */
+  margin: 20px auto; /* Adds margin on the top and bottom, and sets left and right margins to auto */
+  padding: 10px 20px; /* Adjust padding to your preference for size */
+  background-color: #50b3a2; /* Optionally, use your header background color for the button */
+  color: white; /* White text for the button */
+  border: none; /* Removes the default border */
+  cursor: pointer; /* Changes the cursor on hover to indicate it's clickable */
+  font-size: 1em; /* Adjust the font size as needed */
+}
