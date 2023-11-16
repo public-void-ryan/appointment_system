@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 09, 2023 at 04:32 AM
+-- Generation Time: Nov 16, 2023 at 03:16 AM
 -- Server version: 8.0.31
 -- PHP Version: 7.4.33
 
@@ -46,7 +46,9 @@ INSERT INTO `appointments` (`appointment_id`, `user_id`, `service_id`, `appointm
 (2, 1, 2, '2023-11-20 10:00:00', 'scheduled', 'Routine dental checkup', '2023-11-09 04:19:21'),
 (3, 2, 3, '2023-11-16 14:00:00', 'scheduled', 'Annual eye examination', '2023-11-09 04:19:21'),
 (4, 2, 1, '2023-11-22 13:00:00', 'cancelled', 'Reschedule next available slot', '2023-11-09 04:19:21'),
-(5, 3, 1, '2023-11-18 11:00:00', 'completed', 'General checkup completed', '2023-11-09 04:19:21');
+(5, 3, 1, '2023-11-18 11:00:00', 'completed', 'General checkup completed', '2023-11-09 04:19:21'),
+(6, 1, 2, '2023-11-08 12:02:00', 'scheduled', 'test', '2023-11-13 01:44:05'),
+(10, NULL, NULL, '2023-11-08 02:01:00', 'scheduled', 'test', '2023-11-15 22:08:48');
 
 -- --------------------------------------------------------
 
@@ -88,9 +90,7 @@ CREATE TABLE `users` (
   `user_id` int NOT NULL,
   `username` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `full_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `email` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `phone_number` varchar(15) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `user_type` enum('admin','staff','client') COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -99,17 +99,20 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `password`, `full_name`, `email`, `phone_number`, `user_type`, `created_at`) VALUES
-(1, 'john_doe', 'hashed_password', 'John Doe', 'john@example.com', '123-456-7890', 'client', '2023-11-09 04:19:20'),
-(2, 'jane_smith', 'hashed_password', 'Jane Smith', 'jane@example.com', '098-765-4321', 'client', '2023-11-09 04:19:20'),
-(3, 'admin_user', 'hashed_password', 'Admin User', 'admin@example.com', '112-358-1321', 'admin', '2023-11-09 04:19:20'),
-(4, 'alice_wonder', 'hashed_password', 'Alice Wonder', 'alice@example.com', '555-0101', 'client', '2023-11-09 04:19:42'),
-(5, 'bob_builder', 'hashed_password', 'Bob Builder', 'bob@example.com', '555-0102', 'staff', '2023-11-09 04:19:42'),
-(6, 'charlie_brown', 'hashed_password', 'Charlie Brown', 'charlie@example.com', '555-0103', 'client', '2023-11-09 04:19:42'),
-(7, 'diana_prince', 'hashed_password', 'Diana Prince', 'diana@example.com', '555-0104', 'staff', '2023-11-09 04:19:42'),
-(8, 'edward_scissor', 'hashed_password', 'Edward Scissor', 'edward@example.com', '555-0105', 'client', '2023-11-09 04:19:42'),
-(9, 'fiona_fantasy', 'hashed_password', 'Fiona Fantasy', 'fiona@example.com', '555-0106', 'client', '2023-11-09 04:19:42'),
-(10, 'george_giant', 'hashed_password', 'George Giant', 'george@example.com', '555-0107', 'admin', '2023-11-09 04:19:42');
+INSERT INTO `users` (`user_id`, `username`, `password`, `email`, `user_type`, `created_at`) VALUES
+(1, 'john_doe', 'hashed_password', 'john@example.com', 'client', '2023-11-09 04:19:20'),
+(2, 'jane_smith', 'hashed_password', 'jane@example.com', 'client', '2023-11-09 04:19:20'),
+(3, 'admin_user', 'hashed_password', 'admin@example.com', 'admin', '2023-11-09 04:19:20'),
+(4, 'alice_wonder', 'hashed_password', 'alice@example.com', 'client', '2023-11-09 04:19:42'),
+(5, 'bob_builder', 'hashed_password', 'bob@example.com', 'staff', '2023-11-09 04:19:42'),
+(6, 'charlie_brown', 'hashed_password', 'charlie@example.com', 'client', '2023-11-09 04:19:42'),
+(7, 'diana_prince', 'hashed_password', 'diana@example.com', 'staff', '2023-11-09 04:19:42'),
+(8, 'edward_scissor', 'hashed_password', 'edward@example.com', 'client', '2023-11-09 04:19:42'),
+(9, 'fiona_fantasy', 'hashed_password', 'fiona@example.com', 'client', '2023-11-09 04:19:42'),
+(10, 'george_giant', 'hashed_password', 'george@example.com', 'admin', '2023-11-09 04:19:42'),
+(11, 'ryan', '$2y$10$nllJ8LGHS14kgjwZuV5Xw.XlNaF1i9v7hgSbo9qZNVIYjOGw7yczq', NULL, 'admin', '2023-11-15 22:13:00'),
+(13, 'asdasdasd', '$2y$10$yTlrx60CGkPLoX4i4nMll.4ViA1qzl4FDU1V1GT0eu.BxUNbvILzK', NULL, 'admin', '2023-11-15 22:43:21'),
+(14, 'testuser', '$2y$10$.yAwVTShHsETmDPjDjdDBOOlLAeglOWe574wNTJG3nyRq7X4sxEeO', NULL, 'admin', '2023-11-15 22:52:48');
 
 --
 -- Indexes for dumped tables
@@ -144,7 +147,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `appointment_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `appointment_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `services`
@@ -156,7 +159,7 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
