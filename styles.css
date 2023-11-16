@@ -126,3 +126,22 @@ button {
   cursor: pointer; /* Changes the cursor on hover to indicate it's clickable */
   font-size: 1em; /* Adjust the font size as needed */
 }
+.create-appointment-button {
+  margin-top: 20px;
+  display: block; /* Ensure the button is displayed as a block element */
+  width: fit-content; /* Set the width to fit the content */
+  padding: 10px 20px; /* Adjust padding as needed for button size */
+  background-color: #50b3a2; /* Button background color */
+  color: #fff; /* Text color */
+  text-decoration: none; /* Remove underlines */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Add border radius for rounded corners */
+  cursor: pointer;
+}
+
+.create-appointment-button:hover {
+  background-color: #2d665c; /* Change background color on hover */
+}
+.centered-column {
+  text-align: center;
+}

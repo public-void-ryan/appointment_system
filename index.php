@@ -39,7 +39,6 @@
   <div class="container">
     <section id="main">
       <h1>Welcome to our Online Appointment System</h1>
-      <a href="create_appointment.php" class="btn">Create Appointment</a>
     </section>
   </div>
 
