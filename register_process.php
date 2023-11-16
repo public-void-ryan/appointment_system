@@ -6,10 +6,11 @@ require_once("db.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve user input from the form
     $username = $_POST["username"];
+    $email = $_POST["email"]; // Add email field
     $password = $_POST["password"];
 
     // Perform additional server-side validation here
-    // For example, check if the username is already taken
+    // For example, check if the username or email is already taken
 
     // Check if the username already exists
     $sql_check = "SELECT username FROM users WHERE username = ?";
@@ -20,6 +21,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt_check->fetch()) {
         // Username already exists, handle this case
         header("Location: register.php?error=3"); // You can define a custom error code for duplicate username
+        exit();
+    }
+
+    // Check if the email already exists
+    $sql_check_email = "SELECT email FROM users WHERE email = ?";
+    $stmt_check_email = $conn->prepare($sql_check_email);
+    $stmt_check_email->bind_param("s", $email);
+    $stmt_check_email->execute();
+
+    if ($stmt_check_email->fetch()) {
+        // Email already exists, handle this case
+        header("Location: register.php?error=4"); // You can define a custom error code for duplicate email
         exit();
     }
 
@@ -34,11 +47,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // ...
 
     // Prepare and execute the INSERT query to create the new user
-    $sql_insert = "INSERT INTO users (username, password) VALUES (?, ?)";
+    $sql_insert = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
     $stmt_insert = $conn->prepare($sql_insert);
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password
 
-    $stmt_insert->bind_param("ss", $username, $hashedPassword);
+    $stmt_insert->bind_param("sss", $username, $email, $hashedPassword);
     $stmt_insert->execute();
 
     // Check for query errors
@@ -49,6 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Close the statement and the database connection
     $stmt_check->close();
+    $stmt_check_email->close(); // Close email check statement
     $stmt_insert->close();
     $conn->close();
 
