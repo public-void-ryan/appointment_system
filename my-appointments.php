@@ -115,7 +115,7 @@ $result = $stmt->get_result();
                 // Display appointment details in rows
                 echo '<tr>';
                 echo '<td>' . $row['appointment_time'] . '</td>';
-                echo '<td>' . $row['service_id'] . '</td>';
+                echo '<td>' . $row['service_name'] . '</td>';
                 echo '<td>' . $row['status'] . '</td>';
                 echo '<td>' . $row['notes'] . '</td>';
                 echo '<td class="centered-column"><button class="delete-button" onclick="deleteAppointment(' . $row['appointment_id'] . ')">Delete</button></td>'; // Delete button with appointment_id

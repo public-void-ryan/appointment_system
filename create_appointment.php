@@ -93,7 +93,7 @@ $conn->close();
 
                 <div class="form-group">
                     <label for="service">Service:</label>
-                    <select name="service_name" id="service_id">
+                    <select name="service_id" id="service_id">
                         <option value="1">Dental Cleaning</option>
                         <option value="2">Dental Examination</option>
                         <option value="3">Tooth Whitening</option>
