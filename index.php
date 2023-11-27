@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Appointment System Page</title>
+  <title>BrightSmile Family Dentistry</title>
   <link href="styles.css" rel="stylesheet" />
 </head>
 
@@ -12,7 +12,7 @@
   <header>
     <div class="container">
       <div id="branding">
-        <h1>Online Appointment System</h1>
+        <h1>BrightSmile Family Dentistry</h1>
       </div>
       <nav>
         <ul>
