@@ -37,29 +37,25 @@
   </header>
 
   <div class="container">
-  <section id="main">
-    <h1>Our Dental Services</h1>
-    <ul class="services-list">
-      <li>
-        <h2>Dental Cleaning</h2>
-        <p>Book an appointment for a dental cleaning and oral health checkup.</p>
-      </li>
-      <li>
-        <h2>Dental Examination</h2>
-        <p>Get a comprehensive dental examination to ensure healthy teeth and gums.</p>
-      </li>
-      <li>
-        <h2>Tooth Whitening</h2>
-        <p>Enhance your smile with our professional tooth whitening services.</p>
-      </li>
-      <li>
-        <h2>Cavity Filling</h2>
-        <p>Repair cavities and restore your tooth's integrity with our filling services.</p>
-      </li>
-      <li>
-        <h2>Orthodontic Services</h2>
-        <p>Align your teeth and improve your bite with our orthodontic treatments.</p>
-      </li>
+    <section id="main">
+      <h1>Our Dental Services</h1>
+      <ul class="services-list">
+        <li>
+          <h2>Dental Cleaning</h2>
+          <p>Book an appointment for a dental cleaning and oral health checkup.</p>
+        </li>
+        <li>
+          <h2>Dental Examination</h2>
+          <p>Get a comprehensive dental examination to ensure healthy teeth and gums.</p>
+        </li>
+        <li>
+          <h2>Tooth Whitening</h2>
+          <p>Enhance your smile with our professional tooth whitening services.</p>
+        </li>
+        <li>
+          <h2>Cavity Filling</h2>
+          <p>Repair cavities and restore your tooth's integrity with our filling services.</p>
+        </li>
       </ul>
     </section>
   </div>
