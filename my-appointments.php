@@ -16,12 +16,16 @@ require_once("db.php");
 // Retrieve the user ID from the session
 $user_id = $_SESSION["user_id"];
 
-// Prepare and execute a query to fetch user appointments
-$sql = "SELECT * FROM appointments WHERE user_id = ?";
+// Prepare and execute a query to fetch user appointments with service names
+$sql = "SELECT a.appointment_id, a.appointment_time, a.status, a.notes, s.service_name
+        FROM appointments a
+        INNER JOIN services s ON a.service_id = s.service_id
+        WHERE a.user_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
+
 ?>
 
 <!DOCTYPE html>
