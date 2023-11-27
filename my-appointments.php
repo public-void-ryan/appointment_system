@@ -106,6 +106,7 @@ $result = $stmt->get_result();
             echo '<table>';
             echo '<tr>';
             echo '<th>Appointment Time</th>';
+            echo '<th>Service</th>';
             echo '<th>Status</th>';
             echo '<th>Notes</th>';
             echo '<th class="centered-column">Action</th>'; // New column for delete button, add centered-column class
@@ -114,6 +115,7 @@ $result = $stmt->get_result();
                 // Display appointment details in rows
                 echo '<tr>';
                 echo '<td>' . $row['appointment_time'] . '</td>';
+                echo '<td>' . $row['service_id'] . '</td>';
                 echo '<td>' . $row['status'] . '</td>';
                 echo '<td>' . $row['notes'] . '</td>';
                 echo '<td class="centered-column"><button class="delete-button" onclick="deleteAppointment(' . $row['appointment_id'] . ')">Delete</button></td>'; // Delete button with appointment_id
