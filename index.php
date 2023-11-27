@@ -38,7 +38,7 @@
 
   <div class="container">
     <section id="main">
-      <h1>Welcome to our BrightSmile Family Dentistry</h1>
+      <h1>Welcome to BrightSmile Family Dentistry</h1>
     </section>
   </div>
 
