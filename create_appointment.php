@@ -17,13 +17,11 @@ if (!isset($_SESSION["user_id"])) {
 $user_id = $_SESSION["user_id"];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve other data from the form
-    $service_id = $_POST["service_id"]; // Assuming you have a way to determine the service ID
+    $service_id = $_POST["service_id"]; 
     $appointment_time = $_POST["appointment_time"];
-    $status = "scheduled"; // You can set the default status as "scheduled"
+    $status = "scheduled"; // default status "scheduled"
     $notes = $_POST["notes"];
 
-    // Validate the data if needed
 
     // Insert the data into the "appointments" table
     $sql = "INSERT INTO `appointments` (`user_id`, `service_id`, `appointment_time`, `status`, `notes`)
@@ -117,3 +115,4 @@ $conn->close();
     </body>
 
 </html>
+

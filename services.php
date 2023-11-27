@@ -39,24 +39,32 @@
   <div class="container">
     <section id="main">
       <h1>Our Dental Services</h1>
-      <ul class="services-list">
-        <li>
-          <h2>Dental Cleaning</h2>
-          <p>Book an appointment for a dental cleaning and oral health checkup.</p>
-        </li>
-        <li>
-          <h2>Dental Examination</h2>
-          <p>Get a comprehensive dental examination to ensure healthy teeth and gums.</p>
-        </li>
-        <li>
-          <h2>Tooth Whitening</h2>
-          <p>Enhance your smile with our professional tooth whitening services.</p>
-        </li>
-        <li>
-          <h2>Cavity Filling</h2>
-          <p>Repair cavities and restore your tooth's integrity with our filling services.</p>
-        </li>
-      </ul>
+      <?php
+      // Fetch services from the database
+      include('db.php'); // Include your database connection code here
+      
+      $sql = "SELECT `service_id`, `service_name` FROM `services`";
+      $result = $conn->query($sql);
+
+      // Check if there are any services
+      if ($result->num_rows > 0) {
+        echo '<table>';
+        echo '<tr><th>Service</th></tr>';
+
+        // Loop through the fetched services to display in a table
+        while ($row = $result->fetch_assoc()) {
+          $serviceName = $row["service_name"];
+          echo '</td><td>' . $serviceName . '</td></tr>';
+        }
+
+        echo '</table>';
+      } else {
+        echo 'No services available.';
+      }
+
+      // Close the database connection
+      $conn->close();
+      ?>
     </section>
   </div>
 
