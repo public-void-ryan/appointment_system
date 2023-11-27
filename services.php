@@ -49,7 +49,7 @@
       // Check if there are any services
       if ($result->num_rows > 0) {
         echo '<table>';
-        echo '<tr><th>Service ID</th><th>Service Name</th></tr>';
+        echo '<tr><th>Service</th></tr>';
 
         // Loop through the fetched services to display in a table
         while ($row = $result->fetch_assoc()) {
