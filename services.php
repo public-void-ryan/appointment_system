@@ -53,9 +53,8 @@
 
         // Loop through the fetched services to display in a table
         while ($row = $result->fetch_assoc()) {
-          $serviceId = $row["service_id"];
           $serviceName = $row["service_name"];
-          echo '<tr><td>' . $serviceId . '</td><td>' . $serviceName . '</td></tr>';
+          echo '</td><td>' . $serviceName . '</td></tr>';
         }
 
         echo '</table>';
