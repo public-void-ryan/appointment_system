@@ -43,7 +43,7 @@
       // Fetch services from the database
       include('db.php'); // Include your database connection code here
       
-      $sql = "SELECT `service_id`, `service_name` FROM `services`";
+      $sql = "SELECT `service_id`, `service_name`, `service_image` FROM `services`";
       $result = $conn->query($sql);
 
       // Check if there are any services
@@ -54,7 +54,11 @@
         // Loop through the services to display in a table
         while ($row = $result->fetch_assoc()) {
           $serviceName = $row["service_name"];
+          $serviceImage = $row["service_image"];
+
+          // Output the service name and image
           echo '<tr><td>' . $serviceName . '</td></tr>';
+          echo '<tr><td><img src="data:image/jpeg;base64,' . base64_encode($serviceImage) . '" alt="' . $serviceName . '"></td></tr>';
         }
 
         echo '</table>';
