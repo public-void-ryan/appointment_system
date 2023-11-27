@@ -101,7 +101,6 @@ $conn->close();
                         <option value="service_3">Tooth Whitening</option>
                         <option value="service_4">Cavity Filling</option>
                     </select>
-      <input type="submit" value="Submit" />
                 </div>
                 <div class="form-group">
                     <label for="appointment_time">Appointment Time:</label>
