@@ -48,19 +48,17 @@
 
       // Check if there are any services
       if ($result->num_rows > 0) {
-        echo '<div class="form-group">';
-        echo '<label for="service">Service:</label>';
-        echo '<select name="service_id" id="service_id">';
+        echo '<table>';
+        echo '<tr><th>Service ID</th><th>Service Name</th></tr>';
 
-        // Loop through the fetched services to generate options
+        // Loop through the fetched services to display in a table
         while ($row = $result->fetch_assoc()) {
           $serviceId = $row["service_id"];
           $serviceName = $row["service_name"];
-          echo '<option value="' . $serviceId . '">' . $serviceName . '</option>';
+          echo '<tr><td>' . $serviceId . '</td><td>' . $serviceName . '</td></tr>';
         }
 
-        echo '</select>';
-        echo '</div>';
+        echo '</table>';
       } else {
         echo 'No services available.';
       }
