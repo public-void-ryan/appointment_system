@@ -37,74 +37,29 @@
   </header>
 
   <div class="container">
-    <section id="main">
-      <h1>Our Appointment Services</h1>
-      <ul class="services-list">
-        <li>
-          <h2>Medical Checkup</h2>
-          <p>
-            Schedule a routine medical checkup appointment with our healthcare
-            professionals.
-          </p>
-        </li>
-        <li>
-          <h2>Dental Cleaning</h2>
-          <p>
-            Book an appointment for a dental cleaning and oral health checkup.
-          </p>
-        </li>
-        <li>
-          <h2>Legal Consultation</h2>
-          <p>
-            Consult with our legal experts to discuss your legal matters and
-            get advice.
-          </p>
-        </li>
-        <li>
-          <h2>Haircut and Styling</h2>
-          <p>
-            Get a haircut and styling appointment with our experienced
-            hairdressers.
-          </p>
-        </li>
-        <li>
-          <h2>Massage Therapy</h2>
-          <p>Relax and unwind with a therapeutic massage appointment.</p>
-        </li>
-        <li>
-          <h2>Financial Advisory</h2>
-          <p>
-            Schedule a financial advisory session to manage your finances
-            effectively.
-          </p>
-        </li>
-        <li>
-          <h2>Fitness Training</h2>
-          <p>
-            Book a fitness training session with our certified trainers to
-            achieve your fitness goals.
-          </p>
-        </li>
-        <li>
-          <h2>Therapist Session</h2>
-          <p>
-            Seek professional therapy and mental health support with our
-            therapists.
-          </p>
-        </li>
-        <li>
-          <h2>IT Support</h2>
-          <p>
-            Get technical assistance and IT support by scheduling an
-            appointment with our experts.
-          </p>
-        </li>
-        <li>
-          <h2>Home Repair Service</h2>
-          <p>
-            Arrange an appointment for home repair and maintenance services.
-          </p>
-        </li>
+  <section id="main">
+    <h1>Our Dental Services</h1>
+    <ul class="services-list">
+      <li>
+        <h2>Dental Cleaning</h2>
+        <p>Book an appointment for a dental cleaning and oral health checkup.</p>
+      </li>
+      <li>
+        <h2>Dental Examination</h2>
+        <p>Get a comprehensive dental examination to ensure healthy teeth and gums.</p>
+      </li>
+      <li>
+        <h2>Tooth Whitening</h2>
+        <p>Enhance your smile with our professional tooth whitening services.</p>
+      </li>
+      <li>
+        <h2>Cavity Filling</h2>
+        <p>Repair cavities and restore your tooth's integrity with our filling services.</p>
+      </li>
+      <li>
+        <h2>Orthodontic Services</h2>
+        <p>Align your teeth and improve your bite with our orthodontic treatments.</p>
+      </li>
       </ul>
     </section>
   </div>
