@@ -95,11 +95,11 @@ $conn->close();
 
                 <div class="form-group">
                     <label for="service">Service:</label>
-                    <select name="languages" id="lang">
-                        <option value="service_1">Dental Cleaning</option>
-                        <option value="service_2">Dental Examination</option>
-                        <option value="service_3">Tooth Whitening</option>
-                        <option value="service_4">Cavity Filling</option>
+                    <select name="service_list" id="service_id">
+                        <option value="1">Dental Cleaning</option>
+                        <option value="2">Dental Examination</option>
+                        <option value="3">Tooth Whitening</option>
+                        <option value="4">Cavity Filling</option>
                     </select>
                 </div>
                 <div class="form-group">
