@@ -48,8 +48,8 @@
 
       // Check if there are any services
       if ($result->num_rows > 0) {
-        echo '<div class="centered-column">'; // Apply the centered-column class to center-align the content
-        echo '<table>';
+        echo '<div>'; // Remove the extra text-align: center;
+        echo '<table style="margin: 0 auto;">'; // Apply margin: 0 auto; to center the table
         echo '<tr><th>Service</th></tr>';
 
         // Loop through the fetched services to display in a table
@@ -59,7 +59,7 @@
         }
 
         echo '</table>';
-        echo '</div>'; // End of centered content
+        echo '</div>';
       } else {
         echo 'No services available.';
       }
