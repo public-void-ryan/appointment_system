@@ -56,9 +56,9 @@
           $serviceName = $row["service_name"];
           $serviceImage = $row["service_image"];
 
-          // Output the service name and image
+          // Output the service name and image with a CSS class
           echo '<tr><td>' . $serviceName . '</td></tr>';
-          echo '<tr><td><img src="data:image/jpeg;base64,' . base64_encode($serviceImage) . '" alt="' . $serviceName . '"></td></tr>';
+          echo '<tr><td><img src="data:image/jpeg;base64,' . base64_encode($serviceImage) . '" alt="' . $serviceName . '" class="service-image"></td></tr>';
         }
 
         echo '</table>';
