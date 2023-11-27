@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Appointment System Page</title>
+  <title>Appointment System</title>
   <link href="styles.css" rel="stylesheet" />
 </head>
 
