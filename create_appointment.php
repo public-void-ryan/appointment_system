@@ -94,8 +94,14 @@ $conn->close();
                 <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
 
                 <div class="form-group">
-                    <label for="appointment_time">Service:</label>
-                    <input type="datetime-local" id="service_option" name="service_option" required />
+                    <label for="service">Service:</label>
+                    <select name="languages" id="lang">
+                        <option value="service_1">Dental Cleaning</option>
+                        <option value="service_2">Dental Examination</option>
+                        <option value="service_3">Tooth Whitening</option>
+                        <option value="service_4">Cavity Filling</option>
+                    </select>
+      <input type="submit" value="Submit" />
                 </div>
                 <div class="form-group">
                     <label for="appointment_time">Appointment Time:</label>
