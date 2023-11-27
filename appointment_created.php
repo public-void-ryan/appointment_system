@@ -2,19 +2,19 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Appointment Created</title>
-    <link href="styles.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appointment Created</title>
+  <link href="styles.css" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <div id="branding">
-                <h1>Online Appointment System</h1>
-            </div>
-            <nav>
+  <header>
+    <div class="container">
+      <div id="branding">
+        <h1>BrightSmile Family Dentistry</h1>
+      </div>
+      <nav>
         <ul>
           <li class="current"><a href="index.php">Home</a></li>
           <li><a href="services.php">Services</a></li>
@@ -33,16 +33,16 @@
           ?>
         </ul>
       </nav>
-        </div>
-    </header>
-
-    <div class="container">
-        <section id="main">
-            <h1>Appointment Created</h1>
-            <p>Your appointment has been successfully created. Thank you!</p>
-            <a href="index.php" class="btn">Back to Home</a>
-        </section>
     </div>
+  </header>
+
+  <div class="container">
+    <section id="main">
+      <h1>Appointment Created</h1>
+      <p>Your appointment has been successfully created. Thank you!</p>
+      <a href="index.php" class="btn">Back to Home</a>
+    </section>
+  </div>
 </body>
 
 </html>

@@ -17,7 +17,7 @@ if (!isset($_SESSION["user_id"])) {
 $user_id = $_SESSION["user_id"];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $service_id = $_POST["service_id"]; 
+    $service_id = $_POST["service_id"];
     $appointment_time = $_POST["appointment_time"];
     $status = "scheduled"; // default status "scheduled"
     $notes = $_POST["notes"];
@@ -59,7 +59,7 @@ $conn->close();
     <header>
         <div class="container">
             <div id="branding">
-                <h1>Online Appointment System</h1>
+                <h1>BrightSmile Family Dentistry</h1>
             </div>
             <nav>
                 <ul>
@@ -115,4 +115,3 @@ $conn->close();
     </body>
 
 </html>
-

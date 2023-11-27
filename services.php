@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services - Online Appointment System</title>
+  <title>Services - BrightSmile Family Dentistry</title>
   <link href="styles.css" rel="stylesheet" />
 </head>
 
@@ -12,7 +12,7 @@
   <header>
     <div class="container">
       <div id="branding">
-        <h1>Online Appointment System</h1>
+        <h1>BrightSmile Family Dentistry</h1>
       </div>
       <nav>
         <ul>
@@ -38,7 +38,7 @@
 
   <div class="container">
     <section id="main">
-      <h1>Our Dental Services</h1>
+      <h1 style="text-align: center;">Our Dental Services</h1>
       <?php
       // Fetch services from the database
       include('db.php'); // Include your database connection code here
@@ -48,16 +48,18 @@
 
       // Check if there are any services
       if ($result->num_rows > 0) {
+        echo '<div style="text-align: center;">'; // Center-align the content
         echo '<table>';
         echo '<tr><th>Service</th></tr>';
 
         // Loop through the fetched services to display in a table
         while ($row = $result->fetch_assoc()) {
           $serviceName = $row["service_name"];
-          echo '</td><td>' . $serviceName . '</td></tr>';
+          echo '<tr><td>' . $serviceName . '</td></tr>';
         }
 
         echo '</table>';
+        echo '</div>'; // End of centered content
       } else {
         echo 'No services available.';
       }

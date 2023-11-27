@@ -84,7 +84,7 @@ $result = $stmt->get_result();
     <header>
         <div class="container">
             <div id="branding">
-                <h1>Online Appointment System</h1>
+                <h1>BrightSmile Family Dentistry</h1>
             </div>
             <nav>
                 <ul>
