@@ -48,11 +48,10 @@
 
       // Check if there are any services
       if ($result->num_rows > 0) {
-        echo '<div>'; // Remove the extra text-align: center;
-        echo '<table style="margin: 0 auto;">'; // Apply margin: 0 auto; to center the table
-        echo '<tr><th>Service</th></tr>';
+        echo '<div>';
+        echo '<table style="margin: 0 auto;">';
 
-        // Loop through the fetched services to display in a table
+        // Loop through the services to display in a table
         while ($row = $result->fetch_assoc()) {
           $serviceName = $row["service_name"];
           echo '<tr><td>' . $serviceName . '</td></tr>';
