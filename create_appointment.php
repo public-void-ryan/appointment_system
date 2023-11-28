@@ -21,20 +21,14 @@ if (!isset($_SESSION["user_id"])) {
 // Retrieve the user ID from the session
 $user_id = $_SESSION["user_id"];
 
-// Retrieve user email and name from the database
-$sql = "SELECT email, name FROM users WHERE user_id = ?";
+// Retrieve user email from the database
+$sql = "SELECT email FROM users WHERE user_id = ?";
 $stmt = $conn->prepare($sql);
-
-if (!$stmt) {
-    die("Error in SQL query: " . $conn->error);
-}
-
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 $stmt->close();
-
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $service_id = $_POST["service_id"];
@@ -69,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Sender and recipient
             $mail->setFrom('BrightSmilesDentistry23@gmail.com', 'BrightSmile Family Dentistry');
-            $mail->addAddress($user['email'], $user['name']); // Use email and name retrieved from the database
+            $mail->addAddress($user['email']); // Use email retrieved from the database
 
             // Email content
             $mail->Subject = 'Appointment Created';
@@ -94,6 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Close the database connection when done
 $conn->close();
 ?>
+
 
 
 <!DOCTYPE html>
