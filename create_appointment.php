@@ -90,8 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo 'Mailer Error: ' . $mail->ErrorInfo;
         }
 
-        header("Location: appointment_created.php"); // Redirect to a confirmation page
-        exit();
+        //  header("Location: appointment_created.php"); // Redirect to a confirmation page
+        //  exit();
     } else {
         // Error handling
         echo "Error: " . $insertStmt->error;
