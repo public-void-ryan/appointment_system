@@ -158,75 +158,8 @@ $conn->close();
                 </div>
                 <!-- Style the button using the "create-appointment-button" class -->
                 <button type="submit" class="create-appointment-button">Create Appointment</button>
+            </form>
+        </div>
+    </body>
 
-
-
-                <!DOCTYPE html>
-                <html lang="en">
-
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Appointment Created</title>
-                    <link href="styles.css" rel="stylesheet">
-                </head>
-
-                <body>
-                    <header>
-                        <div class="container">
-                            <div id="branding">
-                                <h1>BrightSmile Family Dentistry</h1>
-                            </div>
-                            <nav>
-                                <ul>
-                                    <li class="current"><a href="index.php">Home</a></li>
-                                    <li><a href="services.php">Services</a></li>
-                                    <?php
-                                    if (isset($_SESSION["user_id"])) {
-                                        // User is logged in, display "My Appointments" and "Logout"
-                                        echo '<li><a href="my-appointments.php">My Appointments</a></li>';
-                                        echo '<li><a href="logout.php">Logout</a></li>';
-                                    } else {
-                                        // User is not logged in, display "Login" and "Register"
-                                        echo '<li><a href="login.php">Login</a></li>';
-                                        echo '<li><a href="register.php">Register</a></li>';
-                                    }
-                                    ?>
-                                </ul>
-                            </nav>
-                        </div>
-                    </header>
-                    </head>
-
-                    <body>
-                        <div class="container">
-                            <h1>Create an Appointment</h1>
-                            <form method="post" action="">
-                                <!-- Add the user_id as a hidden input field -->
-                                <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-
-                                <div class="form-group">
-                                    <label for="service">Service:</label>
-                                    <select name="service_id" id="service_id">
-                                        <option value="1">Dental Cleaning</option>
-                                        <option value="2">Dental Examination</option>
-                                        <option value="3">Tooth Whitening</option>
-                                        <option value="4">Cavity Filling</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="appointment_time">Appointment Time:</label>
-                                    <input type="datetime-local" id="appointment_time" name="appointment_time"
-                                        required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="notes">Notes:</label>
-                                    <textarea id="notes" name="notes" rows="4" required></textarea>
-                                </div>
-                                <!-- Style the button using the "create-appointment-button" class -->
-                                <button type="submit" class="create-appointment-button">Create Appointment</button>
-                            </form>
-                        </div>
-                    </body>
-
-                </html>
+</html>
