@@ -27,6 +27,9 @@ $user_id = $_SESSION["user_id"];
 // Retrieve user email from the database
 $sql = "SELECT email FROM users WHERE user_id = ?";
 $stmt = $conn->prepare($sql);
+if (!$stmt) {
+    die("Database error: " . $conn->error);
+}
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -44,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   VALUES (?, ?, ?, ?, ?)";
     $insertStmt = $conn->prepare($insertSql);
     if (!$insertStmt) {
-        die("Error: " . $conn->error); // Output the specific error message
+        die("Database error: " . $conn->error);
     }
     $insertStmt->bind_param("iisss", $user_id, $service_id, $appointment_time, $status, $notes);
 
@@ -55,9 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Send email notification
         $mail = new PHPMailer(true);
         try {
-            // SMTP settings
+            // SMTP settings for Gmail
             $mail->isSMTP();
-            $mail->Host = 'smtp.google.com';
+            $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
             $mail->Username = 'BrightSmilesDentistry23';
             $mail->Password = 'wnho uimv uknm xtvj';
@@ -65,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->Port = 587;
 
             // Sender and recipient
-            $mail->setFrom('BrightSmilesDentistry23@gmail.com', 'BrightSmile Family Dentistry');
+            $mail->setFrom('YourGmailUsername@gmail.com', 'BrightSmile Family Dentistry');
             $mail->addAddress($user['email']); // Use email retrieved from the database
 
             // Email content
@@ -91,8 +94,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Close the database connection when done
 $conn->close();
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -157,8 +158,75 @@ $conn->close();
                 </div>
                 <!-- Style the button using the "create-appointment-button" class -->
                 <button type="submit" class="create-appointment-button">Create Appointment</button>
-            </form>
-        </div>
-    </body>
 
-</html>
+
+
+                <!DOCTYPE html>
+                <html lang="en">
+
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Appointment Created</title>
+                    <link href="styles.css" rel="stylesheet">
+                </head>
+
+                <body>
+                    <header>
+                        <div class="container">
+                            <div id="branding">
+                                <h1>BrightSmile Family Dentistry</h1>
+                            </div>
+                            <nav>
+                                <ul>
+                                    <li class="current"><a href="index.php">Home</a></li>
+                                    <li><a href="services.php">Services</a></li>
+                                    <?php
+                                    if (isset($_SESSION["user_id"])) {
+                                        // User is logged in, display "My Appointments" and "Logout"
+                                        echo '<li><a href="my-appointments.php">My Appointments</a></li>';
+                                        echo '<li><a href="logout.php">Logout</a></li>';
+                                    } else {
+                                        // User is not logged in, display "Login" and "Register"
+                                        echo '<li><a href="login.php">Login</a></li>';
+                                        echo '<li><a href="register.php">Register</a></li>';
+                                    }
+                                    ?>
+                                </ul>
+                            </nav>
+                        </div>
+                    </header>
+                    </head>
+
+                    <body>
+                        <div class="container">
+                            <h1>Create an Appointment</h1>
+                            <form method="post" action="">
+                                <!-- Add the user_id as a hidden input field -->
+                                <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+
+                                <div class="form-group">
+                                    <label for="service">Service:</label>
+                                    <select name="service_id" id="service_id">
+                                        <option value="1">Dental Cleaning</option>
+                                        <option value="2">Dental Examination</option>
+                                        <option value="3">Tooth Whitening</option>
+                                        <option value="4">Cavity Filling</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="appointment_time">Appointment Time:</label>
+                                    <input type="datetime-local" id="appointment_time" name="appointment_time"
+                                        required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="notes">Notes:</label>
+                                    <textarea id="notes" name="notes" rows="4" required></textarea>
+                                </div>
+                                <!-- Style the button using the "create-appointment-button" class -->
+                                <button type="submit" class="create-appointment-button">Create Appointment</button>
+                            </form>
+                        </div>
+                    </body>
+
+                </html>
