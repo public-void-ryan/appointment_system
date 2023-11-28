@@ -1,6 +1,8 @@
 <?php
-// Include the database connection file (db.php)
-require_once("db.php");
+error_reporting(E_ALL);
+ini_set('display_errors', 'on');
+// Start the session.
+session_start();
 
 require __DIR__ . '/vendor/autoload.php'; // Load Composer's autoloader
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
@@ -10,6 +12,9 @@ $smtpHost = $_ENV['SMTP_HOST'];
 $smtpPort = $_ENV['SMTP_PORT'];
 $smtpUser = $_ENV['SMTP_USER'];
 $smtpPass = $_ENV['SMTP_PASS'];
+
+// Include your database connection code here.
+include('db.php');
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
