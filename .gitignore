@@ -1,7 +1,8 @@
 # Environment files
 .env
 
-# Composer dependencies
+### Composer ###
+composer.phar
 /vendor/
 
 # OS and editor folders
@@ -15,9 +16,6 @@ Thumbs.db
 
 # User uploads
 /uploads/
-
-# Composer executable
-composer.phar
 
 # PHP Info and test files
 phpinfo.php
