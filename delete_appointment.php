@@ -2,6 +2,20 @@
 // Include the database connection file (db.php)
 require_once("db.php");
 
+require __DIR__ . '/vendor/autoload.php'; // Load Composer's autoloader
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$smtpHost = $_ENV['SMTP_HOST'];
+$smtpPort = $_ENV['SMTP_PORT'];
+$smtpUser = $_ENV['SMTP_USER'];
+$smtpPass = $_ENV['SMTP_PASS'];
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+
 // Check if the appointment_id parameter is provided
 if (isset($_GET["appointment_id"])) {
     // Retrieve the appointment_id from the URL
@@ -12,47 +26,47 @@ if (isset($_GET["appointment_id"])) {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $appointment_id);
 
-    if ($stmt->execute()) {
-        // Deletion successful
-        // Check if the user's email is confirmed
-        $sql = "SELECT user_id FROM appointments WHERE appointment_id = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $appointment_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $appointment = $result->fetch_assoc();
-        $user_id = $appointment['user_id'];
+}
 
-        $sql = "SELECT email_confirmed, email, name FROM users WHERE user_id = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $user = $result->fetch_assoc();
-        if ($user['email_confirmed']) {
-            // Send email notification
-            $mail = new PHPMailer();
-            $mail->setFrom('your-email@example.com', 'BrightSmile Family Dentistry');
-            $mail->addAddress($user['email'], $user['name']);
-            $mail->Subject = 'Appointment Deleted';
-            $mail->Body = 'Your appointment has been successfully deleted.';
-            if (!$mail->send()) {
-                echo 'Message could not be sent.';
-                echo 'Mailer Error: ' . $mail->ErrorInfo;
-            } else {
-                header("Location: my-appointments.php"); // Redirect back to the My Appointments page
-                exit();
-            }
-        }
-    } else {
-        // Error handling
-        echo "Error: " . $stmt->error;
-    }
+// Retrieve the user ID from the session
+$user_id = $_SESSION["user_id"];
 
-    $stmt->close();
-} else {
-    // If appointment_id parameter is not provided, handle the error or redirect as needed
-    echo "Invalid request.";
+// Retrieve user email from the database
+$sql = "SELECT email FROM users WHERE user_id = ?";
+$stmt = $conn->prepare($sql);
+if (!$stmt) {
+    die("Database error: " . $conn->error);
+}
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+$stmt->close();
+
+// Send email notification
+$mail = new PHPMailer(true);
+try {
+    // SMTP settings for Gmail
+    $mail->isSMTP();
+    $mail->Host = $smtpHost;
+    $mail->SMTPAuth = true;
+    $mail->Username = $smtpUser;
+    $mail->Password = $smtpPass;
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = $smtpPort;
+
+    // Sender and recipient
+    $mail->setFrom('brightsmilesdentistry23@gmail.com', 'BrightSmile Family Dentistry');
+    $mail->addAddress($user['email']); // Use email retrieved from the database
+
+    // Email content
+    $mail->Subject = 'Appointment Deleted';
+    $mail->Body = 'Your appointment has been successfully deleted. Thank you for choosing BrightSmile Family Dentistry.';
+
+    $mail->send();
+} catch (Exception $e) {
+    echo 'Message could not be sent.';
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
 }
 
 // Close the database connection when done
