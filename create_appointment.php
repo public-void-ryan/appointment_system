@@ -18,7 +18,6 @@ echo "SMTP Host: " . $smtpHost . "<br>";
 echo "SMTP Port: " . $smtpPort . "<br>";
 echo "SMTP User: " . $smtpUser . "<br>";
 echo "SMTP Pass: " . $smtpPass . "<br>";
-echo "DB User: " . $smtpPass . "<br>";
 
 // Include your database connection code here.
 include('db.php');
