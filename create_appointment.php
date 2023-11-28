@@ -1,9 +1,14 @@
 <?php
 // Start the session.
 session_start();
+require 'vendor/autoload.php';
 
 // Include your database connection code here.
 include('db.php');
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 // Check if the user is logged in (i.e., the user_id session variable is set)
 if (!isset($_SESSION["user_id"])) {
@@ -16,61 +21,74 @@ if (!isset($_SESSION["user_id"])) {
 // Retrieve the user ID from the session
 $user_id = $_SESSION["user_id"];
 
+// Retrieve user email and name from the database
+$sql = "SELECT email, name FROM users WHERE user_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+$stmt->close();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $service_id = $_POST["service_id"];
     $appointment_time = $_POST["appointment_time"];
     $status = "scheduled"; // default status "scheduled"
     $notes = $_POST["notes"];
 
-
     // Insert the data into the "appointments" table
-    $sql = "INSERT INTO `appointments` (`user_id`, `service_id`, `appointment_time`, `status`, `notes`)
-            VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    if (!$stmt) {
+    $insertSql = "INSERT INTO `appointments` (`user_id`, `service_id`, `appointment_time`, `status`, `notes`)
+                  VALUES (?, ?, ?, ?, ?)";
+    $insertStmt = $conn->prepare($insertSql);
+    if (!$insertStmt) {
         die("Error: " . $conn->error); // Output the specific error message
     }
-    $stmt->bind_param("iisss", $user_id, $service_id, $appointment_time, $status, $notes);
+    $insertStmt->bind_param("iisss", $user_id, $service_id, $appointment_time, $status, $notes);
 
-    if ($stmt->execute()) {
+    if ($insertStmt->execute()) {
         // Appointment created successfully.
         echo 'Your appointment has been successfully created. Thank you!';
-        // Check if the user's email is confirmed
-        $sql = "SELECT email_confirmed, email, name FROM users WHERE user_id = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $user = $result->fetch_assoc();
-        if ($user['email_confirmed']) {
-            // Send email notification
-            $mail = new PHPMailer();
-            $mail->setFrom('your-email@example.com', 'BrightSmile Family Dentistry');
-            $mail->addAddress($user['email'], $user['name']);
+
+        // Send email notification
+        $mail = new PHPMailer(true);
+        try {
+            // SMTP settings
+            $mail->isSMTP();
+            $mail->Host = 'smtp.google.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'BrightSmilesDentistry23';
+            $mail->Password = 'wnho uimv uknm xtvj';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+
+            // Sender and recipient
+            $mail->setFrom('BrightSmilesDentistry23@gmail.com', 'BrightSmile Family Dentistry');
+            $mail->addAddress($user['email'], $user['name']); // Use email and name retrieved from the database
+
+            // Email content
             $mail->Subject = 'Appointment Created';
-            $mail->Body = 'Your appointment has been successfully created. Thank you!';
-            if (!$mail->send()) {
-                echo 'Message could not be sent.';
-                echo 'Mailer Error: ' . $mail->ErrorInfo;
-            } else {
-                header("Location: appointment_created.php"); // Redirect to a confirmation page
-                exit();
-            }
-        } else {
-            // Notify the user that their email is not confirmed and they will not receive email notifications.
-            echo 'Your email is not confirmed. You will not receive email notifications until your email is confirmed. <a href="confirm_email.php">Click here to confirm your email.</a>';
+            $mail->Body = 'Your appointment has been successfully created. Thank you for choosing BrightSmile Family Dentistry.';
+
+            $mail->send();
+        } catch (Exception $e) {
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
         }
+
+        header("Location: appointment_created.php"); // Redirect to a confirmation page
+        exit();
     } else {
         // Error handling
-        echo "Error: " . $stmt->error;
+        echo "Error: " . $insertStmt->error;
     }
 
-    $stmt->close();
+    $insertStmt->close();
 }
 
 // Close the database connection when done
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
