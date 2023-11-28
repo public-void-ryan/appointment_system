@@ -13,6 +13,12 @@ $smtpPort = getenv('SMTP_PORT');
 $smtpUser = getenv('SMTP_USER');
 $smtpPass = getenv('SMTP_PASS');
 
+// Debug: Print the SMTP configuration values
+echo "SMTP Host: " . $smtpHost . "<br>";
+echo "SMTP Port: " . $smtpPort . "<br>";
+echo "SMTP User: " . $smtpUser . "<br>";
+echo "SMTP Pass: " . $smtpPass . "<br>";
+
 // Include your database connection code here.
 include('db.php');
 
