@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require __DIR__ . '/vendor/autoload.php'; // Load Composer's autoloader
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
@@ -8,10 +11,8 @@ $dbUsername = $_ENV['DB_USERNAME'];
 $dbPassword = $_ENV['DB_PASSWORD'];
 $dbName = $_ENV['DB_DATABASE'];
 
-// Create a connection to the database
 $conn = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
 
-// Check the connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
