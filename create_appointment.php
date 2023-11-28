@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 'on');
 // Start the session.
 session_start();
 require 'vendor/autoload.php';
@@ -10,9 +12,6 @@ $smtpHost = getenv('SMTP_HOST');
 $smtpPort = getenv('SMTP_PORT');
 $smtpUser = getenv('SMTP_USER');
 $smtpPass = getenv('SMTP_PASS');
-
-error_reporting(E_ALL);
-ini_set('display_errors', 'on');
 
 // Include your database connection code here.
 include('db.php');
@@ -72,6 +71,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->SMTPAuth = true;
             $mail->Username = $smtpUser;
             $mail->Password = $smtpPass;
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER; // Enable SMTP debugging
+            $mail->Debugoutput = 'html'; // Output debugging information as HTML
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = $smtpPort;
 
