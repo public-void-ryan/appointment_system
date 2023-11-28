@@ -1,3 +1,24 @@
+# Environment files
 .env
 
+# Composer dependencies
 /vendor/
+
+# OS and editor folders
+.DS_Store
+Thumbs.db
+.idea/
+
+# Cache and logs
+/cache/
+/logs/
+
+# User uploads
+/uploads/
+
+# Composer executable
+composer.phar
+
+# PHP Info and test files
+phpinfo.php
+test.php
