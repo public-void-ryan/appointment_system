@@ -28,10 +28,16 @@ if (isset($_GET["appointment_id"])) {
 
     // Prepare and execute a query to delete the appointment
     $sql = "DELETE FROM appointments WHERE appointment_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $appointment_id);
+    $delstmt = $conn->prepare($sql);
+    $delstmt->bind_param("i", $appointment_id);
 
 }
+
+if ($delstmt->execute()) {
+    // Appointment deleted successfully.
+    echo 'Your appointment has been successfully deleted. Thank you!';
+}
+
 
 // Retrieve the user ID from the session
 $user_id = $_SESSION["user_id"];
@@ -73,6 +79,10 @@ try {
     echo 'Message could not be sent.';
     echo 'Mailer Error: ' . $mail->ErrorInfo;
 }
+
+
+
+$delstmt->close();
 
 // Close the database connection when done
 $conn->close();
