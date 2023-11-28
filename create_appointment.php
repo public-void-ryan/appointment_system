@@ -8,16 +8,17 @@ require 'vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$smtpHost = getenv('SMTP_HOST');
-$smtpPort = getenv('SMTP_PORT');
-$smtpUser = getenv('SMTP_USER');
-$smtpPass = getenv('SMTP_PASS');
+$smtpHost = $_ENV('SMTP_HOST');
+$smtpPort = $_ENV('SMTP_PORT');
+$smtpUser = $_ENV('SMTP_USER');
+$smtpPass = $_ENV('SMTP_PASS');
 
 // Debug: Print the SMTP configuration values
 echo "SMTP Host: " . $smtpHost . "<br>";
 echo "SMTP Port: " . $smtpPort . "<br>";
 echo "SMTP User: " . $smtpUser . "<br>";
 echo "SMTP Pass: " . $smtpPass . "<br>";
+echo "DB User: " . $smtpPass . "<br>";
 
 // Include your database connection code here.
 include('db.php');
