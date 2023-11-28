@@ -55,8 +55,9 @@
         selectable: true,
         businessHours: true,
         dayMaxEvents: true,
+        aspectRatio: 1.35, // Adjust this value as needed
         events: [
-          // Add more events as needed
+          // Your events here
         ],
       });
 
