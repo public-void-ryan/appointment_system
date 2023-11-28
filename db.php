@@ -1,11 +1,15 @@
 <?php
-$db_host = "localhost";
-$db_user = "scsu";
-$db_password = "huskies"; 
-$db_name = "appointment_app"; 
+require __DIR__ . '/vendor/autoload.php'; // Load Composer's autoloader
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$dbHost = $_ENV['DB_HOST'];
+$dbUsername = $_ENV['DB_USERNAME'];
+$dbPassword = $_ENV['DB_PASSWORD'];
+$dbName = $_ENV['DB_DATABASE'];
 
 // Create a connection to the database
-$conn = new mysqli($db_host, $db_user, $db_password, $db_name);
+$conn = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
 
 // Check the connection
 if ($conn->connect_error) {
