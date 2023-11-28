@@ -24,11 +24,17 @@ $user_id = $_SESSION["user_id"];
 // Retrieve user email and name from the database
 $sql = "SELECT email, name FROM users WHERE user_id = ?";
 $stmt = $conn->prepare($sql);
+
+if (!$stmt) {
+    die("Error in SQL query: " . $conn->error);
+}
+
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 $stmt->close();
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $service_id = $_POST["service_id"];
