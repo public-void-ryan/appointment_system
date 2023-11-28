@@ -66,8 +66,6 @@ $conn->close();
                     <li class="current"><a href="index.php">Home</a></li>
                     <li><a href="services.php">Services</a></li>
                     <?php
-                    // Check if the user is logged in
-                    session_start();
                     if (isset($_SESSION["user_id"])) {
                         // User is logged in, display "My Appointments" and "Logout"
                         echo '<li><a href="my-appointments.php">My Appointments</a></li>';
