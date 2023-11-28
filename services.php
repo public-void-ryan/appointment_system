@@ -50,22 +50,22 @@
       if ($result->num_rows > 0) {
         echo '<div>';
         echo '<table style="margin: 0 auto;">';
-
+    
         // Loop through the services to display in a table
         while ($row = $result->fetch_assoc()) {
-          $serviceName = $row["service_name"];
-          $serviceImage = $row["service_image"];
-
-          // Output the service name and image with a CSS class
-          echo '<tr><td>' . $serviceName . '</td></tr>';
-          echo '<tr><td><img src="data:image/jpeg;base64,' . base64_encode($serviceImage) . '" alt="' . $serviceName . '" class="service-image"></td></tr>';
+            $serviceName = $row["service_name"];
+            $serviceImage = $row["service_image"];
+    
+            // Output the service name with CSS styles
+            echo '<tr><td class="service-name">' . $serviceName . '</td></tr>';
+            echo '<tr><td><img src="data:image/jpeg;base64,' . base64_encode($serviceImage) . '" alt="' . $serviceName . '" class="service-image"></td></tr>';
         }
-
+    
         echo '</table>';
         echo '</div>';
-      } else {
+    } else {
         echo 'No services available.';
-      }
+    }
 
       // Close the database connection
       $conn->close();
