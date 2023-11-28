@@ -13,12 +13,6 @@ $smtpPort = $_ENV['SMTP_PORT'];
 $smtpUser = $_ENV['SMTP_USER'];
 $smtpPass = $_ENV['SMTP_PASS'];
 
-// Debug: Print the SMTP configuration values
-echo "SMTP Host: " . $smtpHost . "<br>";
-echo "SMTP Port: " . $smtpPort . "<br>";
-echo "SMTP User: " . $smtpUser . "<br>";
-echo "SMTP Pass: " . $smtpPass . "<br>";
-
 // Include your database connection code here.
 include('db.php');
 
@@ -77,8 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->SMTPAuth = true;
             $mail->Username = $smtpUser;
             $mail->Password = $smtpPass;
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER; // Enable SMTP debugging
-            $mail->Debugoutput = 'html'; // Output debugging information as HTML
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = $smtpPort;
 
@@ -96,8 +88,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo 'Mailer Error: ' . $mail->ErrorInfo;
         }
 
-        //  header("Location: appointment_created.php"); // Redirect to a confirmation page
-        //  exit();
+        header("Location: appointment_created.php"); // Redirect to a confirmation page
+        exit();
     } else {
         // Error handling
         echo "Error: " . $insertStmt->error;
