@@ -3,15 +3,15 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'on');
 // Start the session.
 session_start();
-require 'vendor/autoload.php';
 
+require __DIR__ . '/vendor/autoload.php'; // Load Composer's autoloader
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$smtpHost = $_ENV('SMTP_HOST');
-$smtpPort = $_ENV('SMTP_PORT');
-$smtpUser = $_ENV('SMTP_USER');
-$smtpPass = $_ENV('SMTP_PASS');
+$smtpHost = $_ENV['SMTP_HOST'];
+$smtpPort = $_ENV['SMTP_PORT'];
+$smtpUser = $_ENV['SMTP_USER'];
+$smtpPass = $_ENV['SMTP_PASS'];
 
 // Debug: Print the SMTP configuration values
 echo "SMTP Host: " . $smtpHost . "<br>";
