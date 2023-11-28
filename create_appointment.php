@@ -1,8 +1,8 @@
 <?php
-// Start the session
+// Start the session.
 session_start();
 
-// Include your database connection code here
+// Include your database connection code here.
 include('db.php');
 
 // Check if the user is logged in (i.e., the user_id session variable is set)
@@ -30,9 +30,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("iisss", $user_id, $service_id, $appointment_time, $status, $notes);
 
     if ($stmt->execute()) {
-        // Appointment created successfully
-        header("Location: appointment_created.php"); // Redirect to a confirmation page
-        exit();
+        // Appointment created successfully.
+        echo 'Your appointment has been successfully created. Thank you!';
+        // Check if the user's email is confirmed
+        $sql = "SELECT email_confirmed, email, name FROM users WHERE user_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        if ($user['email_confirmed']) {
+            // Send email notification
+            $mail = new PHPMailer();
+            $mail->setFrom('your-email@example.com', 'BrightSmile Family Dentistry');
+            $mail->addAddress($user['email'], $user['name']);
+            $mail->Subject = 'Appointment Created';
+            $mail->Body = 'Your appointment has been successfully created. Thank you!';
+            if (!$mail->send()) {
+                echo 'Message could not be sent.';
+                echo 'Mailer Error: ' . $mail->ErrorInfo;
+            } else {
+                header("Location: appointment_created.php"); // Redirect to a confirmation page
+                exit();
+            }
+        } else {
+            // Notify the user that their email is not confirmed and they will not receive email notifications.
+            echo 'Your email is not confirmed. You will not receive email notifications until your email is confirmed. <a href="confirm_email.php">Click here to confirm your email.</a>';
+        }
     } else {
         // Error handling
         echo "Error: " . $stmt->error;
