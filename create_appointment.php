@@ -27,6 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO `appointments` (`user_id`, `service_id`, `appointment_time`, `status`, `notes`)
             VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
+    if (!$stmt) {
+        die("Error: " . $conn->error); // Output the specific error message
+    }
     $stmt->bind_param("iisss", $user_id, $service_id, $appointment_time, $status, $notes);
 
     if ($stmt->execute()) {
