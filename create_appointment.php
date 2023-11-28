@@ -3,6 +3,9 @@
 session_start();
 require 'vendor/autoload.php';
 
+error_reporting(E_ALL);
+ini_set('display_errors', 'on');
+
 // Include your database connection code here.
 include('db.php');
 
