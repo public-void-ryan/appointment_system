@@ -3,6 +3,14 @@
 session_start();
 require 'vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$smtpHost = getenv('SMTP_HOST');
+$smtpPort = getenv('SMTP_PORT');
+$smtpUser = getenv('SMTP_USER');
+$smtpPass = getenv('SMTP_PASS');
+
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
 
@@ -60,15 +68,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         try {
             // SMTP settings for Gmail
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
+            $mail->Host = $smtpHost;
             $mail->SMTPAuth = true;
-            $mail->Username = 'BrightSmilesDentistry23';
-            $mail->Password = 'wnho uimv uknm xtvj';
+            $mail->Username = $smtpUser;
+            $mail->Password = $smtpPass;
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
+            $mail->Port = $smtpPort;
 
             // Sender and recipient
-            $mail->setFrom('YourGmailUsername@gmail.com', 'BrightSmile Family Dentistry');
+            $mail->setFrom('brightsmilesdentistry23@gmail.com', 'BrightSmile Family Dentistry');
             $mail->addAddress($user['email']); // Use email retrieved from the database
 
             // Email content
