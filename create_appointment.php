@@ -157,7 +157,10 @@ $conn->close();
                 </div>
                 <div class="form-group">
                     <label for="appointment_time">Appointment Time:</label>
-                    <input type="datetime-local" id="appointment_time" name="appointment_time" required />
+                    <input type="datetime-local" id="appointment_time" name="appointment_time" required
+                        min="<?php echo date('Y-m-d\TH:i'); ?>"
+                        max="<?php echo date('Y-m-d\TH:i', strtotime('+365 days')); ?>"
+                        pattern="^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$" />
                 </div>
                 <div class="form-group">
                     <label for="notes">Notes:</label>
